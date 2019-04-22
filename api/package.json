@@ -1,0 +1,22 @@
+{
+  "name": "mini-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.5",
+    "body-parser": "*",
+    "express": "*",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "*",
+    "mssql": "*",
+    "mysql": "^2.16.0",
+    "web-push": "^3.3.3"
+  },
+  "author": "",
+  "license": "ISC"
+}
