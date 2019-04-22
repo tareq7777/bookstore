@@ -19,8 +19,8 @@ Book.getBooksByisbn = (bookisbn, response) => {
 };
 
 Book.addNewBook = (book, response) => {
-    db.query("INSERT INTO books VALUES (?,?,?,?)", [book.title, book.isbn, book.author, book.keywords, book.publisher], (err, res) => {
-        err ? functions.response(response, -99) : functions.response(response, 1, res);
+    db.query("INSERT INTO books VALUES (?,?,?,?,?,?)", [0, book.title, book.isbn, book.author, book.keywords, book.publisher], (err, res) => {
+        err ? functions.response(response, -99) : functions.response(response, 1, null);
     });
 };
 
