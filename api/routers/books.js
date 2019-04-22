@@ -53,7 +53,7 @@ router.put('/:id', (req, res) => {
             id: bookId, title: title, isbn: isbn, keywords: keywords
             , publisher: publisher, author: author
         };
-        Book.upadateBook(book, res);
+        Book.updateBook(book, res);
     } else {
         functions.response(res, -10);
     }
