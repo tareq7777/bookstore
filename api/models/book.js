@@ -7,20 +7,41 @@ const Book = (book) => {
 };
 
 Book.getAllBooks = (response) => {
-    db.query("SELECT * FROM books", (err, res) => {
-        err ? functions.response(response, -99) : functions.response(response, 1, res);
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            connection.query("SELECT * FROM books", (err, res) => {
+                err ? functions.response(response, -99) : functions.response(response, 1, res);
+            });
+            connection.release();
+        }
     });
 };
 
-Book.getBooksByisbn = (bookisbn, response) => {
-    db.query("SELECT * FROM books WHERE isbn= ?", [bookId], (err, res) => {
-        err ? functions.response(response, -99) : functions.response(response, 1, res);
+Book.getBooksById = (bookId, response) => {
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            connection.query("SELECT * FROM books WHERE id= ?", [bookId], (err, res) => {
+                err ? functions.response(response, -99) : functions.response(response, 1, res);
+            });
+            connection.release();
+        }
     });
 };
 
 Book.addNewBook = (book, response) => {
-    db.query("INSERT INTO books VALUES (?,?,?,?,?,?)", [0, book.title, book.isbn, book.author, book.keywords, book.publisher], (err, res) => {
-        err ? functions.response(response, -99) : functions.response(response, 1, null);
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            connection.query("INSERT INTO books VALUES (?,?,?,?,?,?)", [0, book.title, book.isbn, book.author, book.keywords, book.publisher], (err, res) => {
+                err ? functions.response(response, -99) : functions.response(response, 1, null);
+            });
+            connection.release();
+        }
     });
 };
 
