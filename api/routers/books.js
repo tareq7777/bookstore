@@ -15,7 +15,7 @@ router.get('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     let bookId = parseInt(req.params.id);
     if (bookId)
-        Book.deleteBooksById(res, bookId);
+        Book.deleteBooksById(bookId, res);
     else
         functions.response(res, -10);
 });
