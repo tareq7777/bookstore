@@ -32,8 +32,15 @@ Book.getBooksById = (bookId, response) => {
     });
 };
 Book.deleteBooksById = (bookId, response) => {
-    db.query("DELETE FROM books WHERE id= ?", [bookId], (err, res) => {
-        err ? functions.response(response, -99) : functions.response(response, 1, res);
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            connection.query("DELETE FROM books WHERE id= ?", [bookId], (err, res) => {
+                err ? functions.response(response, -99) : functions.response(response, 1, res);
+            });
+            connection.release();
+        }
     });
 };
 
