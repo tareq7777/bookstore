@@ -1,5 +1,3 @@
-const express = require('express');
-const app = express();
 const router = express.Router();
 const Book = require('../models/book');
 

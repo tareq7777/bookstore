@@ -1,7 +1,4 @@
-const sql = require('../db');
-// const checkAuth = require('../auth/middleware/check-auth');
-
-var User = (user) => {
+const User = (user) => {
     this.id = user.id;
     this.email = user.email;
     this.password = user.password;
@@ -9,34 +6,24 @@ var User = (user) => {
     this.last = user.last;
 };
 
-User.getAllUser = (result) => {
+User.getAllUser = (response) => {
     sql.query("SELECT * FROM users", (err, res) => {
-        if (err) {
-            result(err, null);
-        } else {
-            result(null, res);
-        }
+        err ? functions.response(response, -99) : functions.response(response, 1, res);
     });
 };
 
-User.getUserByEmail = (email, result) => {
-    sql.query("SELECT * FROM users WHERE email='" + email + "'", (err, res) => {
-        if (err) {
-            result(err, null);
-        } else {
-            result(null, res);
-        }
+User.getUserById = (id, response) => {
+    sql.query("SELECT * FROM users WHERE id= ?", [id], (err, res) => {
+        err ? functions.response(response, -99) : functions.response(response, 1, res);
     });
-}
-User.createUser = (newUser, result) => {
-    sql.query("INSERT INTO `users` (`email`, `password`, `first`, `last`) VALUES ('" + newUser.email + "', '" + newUser.password + "', '" + newUser.firstName + "', '" + newUser.lastName + "');", (err, res) => {
-        if (err) {
-            result(err, null);
-        } else {
-            result(null, res);
-        }
+};
+
+User.createUser = (newUser, response) => {
+    sql.query("INSERT INTO `users` (`email`, `password`, `first`, `last`) VALUES (?,?,?,?)", [newUser.email, newUser.password, newUser.first, newUser.last], (err, res) => {
+        err ? functions.response(response, -99) : functions.response(response, 1, res);
     });
-}
+};
+
 User.logIn = (userData, result) => {
     var password;
     sql.query("SELECT `password` FROM `users` WHERE `email` = " + userData.email + "", (err, res) => {
@@ -55,6 +42,6 @@ User.logIn = (userData, result) => {
     });
 
 
-}
+};
 
 module.exports = User;
