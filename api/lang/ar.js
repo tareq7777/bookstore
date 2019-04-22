@@ -1,6 +1,6 @@
 const language = {
     success: 'نجاح',
-    notFound: 'حتوى غير موجود',
+    notFound: 'محتوى غير موجود',
     missingFields: 'يرجى ملئ جميع الحقول',
     generalError: 'خطأ عام',
 };

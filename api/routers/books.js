@@ -6,20 +6,25 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    let bookId = parseInt(req.params.id);
-    if (bookId)
-        Book.getBooksById(bookId, res);
+    let bookisbn = parseInt(req.params.id);
+    if (bookisbn)
+        Book.getBooksByisbn(res, bookisbn);
     else
         functions.response(res, -10);
 });
 
 router.post('/', (req, res) => {
-
+    let title = req.body.title;
+    let isbn = parseInt(req.body.isbn);
+    let author = req.body.author;
+    let keywords = req.body.keywords;
+    let publisher = req.body.publisher;
+    if( title  && isbn && author && keywords && publisher){
     const book = {
-        id: 0, title: req.body.title, author: req.body.author, keywords: req.body.keywords
-        , publisher: req.body.publisher
+        id: 0, title: title, isbn: isbn, keywords: keywords
+        , publisher: publisher , author: author
     };
-    console.log('new user:', user);
+    
     User.createUser(user, (err, result) => {
         if (err) {
             res.status(500).json({error: err});
@@ -30,7 +35,9 @@ router.post('/', (req, res) => {
 
         }
     });
-
+    }else{
+        functions.response(res, -10);
+    }
 
 })
 // var courses = new Array;
