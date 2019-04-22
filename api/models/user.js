@@ -7,31 +7,60 @@ const User = (user) => {
 };
 
 User.getAllUser = (response) => {
-    db.query("SELECT * FROM users", (err, res) => {
-        err ? functions.response(response, -99) : functions.response(response, 1, res);
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            connection.query("SELECT * FROM users", (err, res) => {
+                err ? functions.response(response, -99) : functions.response(response, 1, res);
+            });
+            connection.release();
+        }
     });
 };
 
 User.getUserById = (id, response) => {
-    db.query("SELECT * FROM users WHERE id= ?", [id], (err, res) => {
-        err ? functions.response(response, -99) : functions.response(response, 1, res);
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            connection.query("SELECT * FROM users WHERE id= ?", [id], (err, res) => {
+                err ? functions.response(response, -99) : functions.response(response, 1, res);
+            });
+            connection.release();
+        }
     });
 };
 
 User.createUser = (newUser, response) => {
-    db.query("INSERT INTO `users` (`email`, `password`, `first`, `last`) VALUES (?,?,?,?)", [newUser.email, newUser.password, newUser.first, newUser.last], (err, res) => {
-        err ? functions.response(response, -99) : functions.response(response, 1, res);
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            connection.query("INSERT INTO `users` (`email`, `password`, `first`, `last`) VALUES (?,?,?,?)", [newUser.email, newUser.password, newUser.first, newUser.last], (err, res) => {
+                err ? functions.response(response, -99) : functions.response(response, 1, res);
+            });
+            connection.release();
+        }
     });
+
 };
 
 User.logIn = (userData, response) => {
-    var pwd = '';
-    db.query("SELECT `password` FROM `users` WHERE `email` = ?", [userData.email], (err, res) => {
-        err ? functions.response(response, -99) : pwd = res;
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            var pwd = '';
+            connection.query("SELECT `password` FROM `users` WHERE `email` = ?", [userData.email], (err, res) => {
+                err ? functions.response(response, -99) : pwd = res;
 
-    });
-    bcrypt.compare(userData.password, pwd, function (err, res) {
-        err ? functions.response(response, -99) : functions.response(response, 1, res);
+            });
+            bcrypt.compare(userData.password, pwd, function (err, res) {
+                err ? functions.response(response, -99) : functions.response(response, 1, res);
+            });
+            connection.release();
+        }
     });
 };
 
