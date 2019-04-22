@@ -50,8 +50,8 @@ router.put('/:id', (req, res) => {
 
     if (bookId && title && isbn && author && keywords && publisher) {
         const book = {
-            id: bookId, title: title, isbn: isbn, keywords: keywords
-            , publisher: publisher, author: author
+            id: bookId, title: title, isbn: isbn, keywords: keywords,
+            publisher: publisher, author: author
         };
         Book.updateBook(book, res);
     } else {
