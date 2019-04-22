@@ -1,6 +1,9 @@
 const Book = (book) => {
-    this.id = book.id;
-    this.name = book.name;
+    this.title = book.title;
+    this.isbn = book.isbn;
+    this.author = book.author;
+    this.keywords = book.keywords;
+    this.publisher = book.publisher;
 };
 
 Book.getAllBooks = (response) => {
@@ -9,8 +12,8 @@ Book.getAllBooks = (response) => {
     });
 };
 
-Book.getBooksById = (bookId, response) => {
-    db.query("SELECT * FROM books WHERE id= ?", [bookId], (err, res) => {
+Book.getBooksByisbn = (bookisbn, response) => {
+    db.query("SELECT * FROM books WHERE isbn= ?", [bookId], (err, res) => {
         err ? functions.response(response, -99) : functions.response(response, 1, res);
     });
 };
