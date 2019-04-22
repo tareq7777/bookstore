@@ -17,6 +17,11 @@ Book.getBooksById = (bookId, response) => {
         err ? functions.response(response, -99) : functions.response(response, 1, res);
     });
 };
+Book.deleteBooksById = (bookId, response) => {
+    db.query("DELETE FROM books WHERE id= ?", [bookId], (err, res) => {
+        err ? functions.response(response, -99) : functions.response(response, 1, res);
+    });
+};
 
 Book.addNewBook = (book, response) => {
     db.query("INSERT INTO books VALUES (?,?,?,?,?,?)", [0, book.title, book.isbn, book.author, book.keywords, book.publisher], (err, res) => {
