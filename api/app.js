@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 app.use('/api/books', require('./routers/books.js'));
 app.use('/api/users', require('./routers/users.js'));
 app.use('/', (req, res) => {
-    res.status(404).send('incorrect url!');
+    res.status(404).send('Not found');
 });
 
 module.exports = app;
