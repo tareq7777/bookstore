@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2019 at 01:39 PM
+-- Generation Time: Apr 22, 2019 at 01:41 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -45,6 +45,27 @@ INSERT INTO `books` (`id`, `title`, `isbn`, `author`, `keywords`, `publisher`) V
 (1, 'book1', '123', 'author1', 'test1, test2', ''),
 (2, 'book2', '456', 'author2', 'test2, test3', '');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(500) NOT NULL,
+  `password` varchar(500) NOT NULL,
+  `notify_author` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `notify_author`) VALUES
+(1, 'user1', '123', NULL),
+(2, 'user2', '123', NULL);
+
 --
 -- Indexes for dumped tables
 --
@@ -56,6 +77,12 @@ ALTER TABLE `books`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -63,6 +90,12 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
