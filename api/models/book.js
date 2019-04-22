@@ -44,5 +44,10 @@ Book.addNewBook = (book, response) => {
         }
     });
 };
+Book.updateBook = (book, response) => {
+    db.query("UPDATE books SET title = ? , isbn = ? , author = ? , keywords = ? , publisher = ? , WHERE id = ?", [book.title, book.isbn, book.author, book.keywords, book.publisher, book.id], (err, res) => {
+        err ? functions.response(response, -99) : functions.response(response, 1, null);
+    });
+};
 
 module.exports = Book;

@@ -6,15 +6,15 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    let bookisbn = parseInt(req.params.id);
-    if (bookisbn)
-        Book.getBooksByisbn(res, bookisbn);
+    let bookId = parseInt(req.params.id);
+    if (bookId)
+        Book.getBooksById(res, bookId);
     else
         functions.response(res, -10);
 });
 
 router.post('/', (req, res) => {
-    
+
     let title = req.body.title;
     let isbn = parseInt(req.body.isbn);
     let author = req.body.author;
@@ -27,6 +27,26 @@ router.post('/', (req, res) => {
             , publisher: publisher, author: author
         };
         Book.addNewBook(book, res);
+    } else {
+        functions.response(res, -10);
+    }
+
+});
+
+router.put('/:id', (req, res) => {
+    let bookId = parseInt(req.params.id);
+    let title = req.body.title;
+    let isbn = parseInt(req.body.isbn);
+    let author = req.body.author;
+    let keywords = req.body.keywords;
+    let publisher = req.body.publisher;
+
+    if (bookId && title && isbn && author && keywords && publisher) {
+        const book = {
+            id: bookId, title: title, isbn: isbn, keywords: keywords
+            , publisher: publisher, author: author
+        };
+        Book.upadateBook(book, res);
     } else {
         functions.response(res, -10);
     }
