@@ -6,9 +6,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    let bookisbn = parseInt(req.params.id);
-    if (bookisbn)
-        Book.getBooksByisbn(res, bookisbn);
+    let bookId = parseInt(req.params.id);
+    if (bookId)
+        Book.getBooksById(res, bookId);
     else
         functions.response(res, -10);
 });

@@ -12,8 +12,8 @@ Book.getAllBooks = (response) => {
     });
 };
 
-Book.getBooksByisbn = (bookisbn, response) => {
-    db.query("SELECT * FROM books WHERE isbn= ?", [bookId], (err, res) => {
+Book.getBooksById = (bookId, response) => {
+    db.query("SELECT * FROM books WHERE id= ?", [bookId], (err, res) => {
         err ? functions.response(response, -99) : functions.response(response, 1, res);
     });
 };
