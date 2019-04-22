@@ -13,6 +13,6 @@ connection.connect(function(err){
         console.log('Error Connection', err);
         throw err;
     }
-    console.log('Conneceted');
+    console.log('Connected to DB');
 });
 module.exports = connection;
