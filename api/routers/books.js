@@ -12,6 +12,13 @@ router.get('/:id', (req, res) => {
     else
         functions.response(res, -10);
 });
+router.delete('/:id', (req, res) => {
+    let bookId = parseInt(req.params.id);
+    if (bookId)
+        Book.deleteBooksById(res, bookId);
+    else
+        functions.response(res, -10);
+});
 
 router.post('/', (req, res) => {
 

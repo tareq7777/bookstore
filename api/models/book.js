@@ -31,6 +31,11 @@ Book.getBooksById = (bookId, response) => {
         }
     });
 };
+Book.deleteBooksById = (bookId, response) => {
+    db.query("DELETE FROM books WHERE id= ?", [bookId], (err, res) => {
+        err ? functions.response(response, -99) : functions.response(response, 1, res);
+    });
+};
 
 Book.addNewBook = (book, response) => {
     db.pool.getConnection(function (dbErr, connection) {
