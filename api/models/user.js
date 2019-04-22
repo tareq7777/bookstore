@@ -24,24 +24,15 @@ User.createUser = (newUser, response) => {
     });
 };
 
-User.logIn = (userData, result) => {
-    var password;
-    sql.query("SELECT `password` FROM `users` WHERE `email` = " + userData.email + "", (err, res) => {
-        if (err) {
-            result(err, null);
-        } else {
-            password = res;
-        }
-    });
-    bcrypt.compare(userData.password, password, function (err, res) {
-        if (err) {
-            result(err, null);
-        } else {
-            result(null, res);
-        }
-    });
+User.logIn = (userData, response) => {
+    var pwd = '';
+    sql.query("SELECT `password` FROM `users` WHERE `email` = ?", [userData.email], (err, res) => {
+        err ? functions.response(response, -99) : pwd = res;
 
-
+    });
+    bcrypt.compare(userData.password, pwd, function (err, res) {
+        err ? functions.response(response, -99) : functions.response(response, 1, res);
+    });
 };
 
 module.exports = User;

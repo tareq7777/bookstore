@@ -8,7 +8,16 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     let userId = parseInt(req.params.id);
     if (userId)
-        User.getUserByEmail(res, userId);
+        User.getUserById(userId, res);
+    else
+        functions.response(res, -10);
+});
+
+router.get('/login', (req, res) => {
+    let email = parseInt(req.body.email);
+    let pwd = parseInt(req.body.pwd);
+    if (email && pwd)
+        User.logIn({email: email, password: pwd}, res);
     else
         functions.response(res, -10);
 });
