@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     let bookId = parseInt(req.params.id);
     if (bookId)
-        Book.getBooksById(res, bookId);
+        Book.getBooksById(bookId, res);
     else
         functions.response(res, -10);
 });
