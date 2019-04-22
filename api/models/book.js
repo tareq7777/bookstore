@@ -31,6 +31,7 @@ Book.getBooksById = (bookId, response) => {
         }
     });
 };
+
 Book.deleteBooksById = (bookId, response) => {
     db.pool.getConnection(function (dbErr, connection) {
         if (dbErr) {
@@ -56,12 +57,14 @@ Book.addNewBook = (book, response) => {
         }
     });
 };
+
 Book.updateBook = (book, response) => {
     db.pool.getConnection(function (dbErr, connection) {
         if (dbErr) {
             functions.response(response, -99);
         } else {
-            connection.query("UPDATE books SET title = ? , isbn = ? , author = ? , keywords = ? , publisher = ? , WHERE id = ?", [book.title, book.isbn, book.author, book.keywords, book.publisher, book.id], (err, res) => {
+            connection.query("UPDATE books SET title = ? , isbn = ? , author = ? , keywords = ? , publisher = ? WHERE id = ?", [book.title, book.isbn, book.author, book.keywords, book.publisher, book.id], (err, res) => {
+                console.log(err);
                 err ? functions.response(response, -99) : functions.response(response, 1, null);
             });
             connection.release();
