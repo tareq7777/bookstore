@@ -1,0 +1,20 @@
+.title{
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px; 
+    font-size: 20px
+}
+.table{
+    list-style-type: none;
+
+}
+.tableTit{
+    padding-left: 40px!important;
+    font-size: 20px;
+}
+.underLine{
+    border-bottom: 1px #17a2b852 solid;
+}
+.cel{
+    padding-top: 17px;
+}

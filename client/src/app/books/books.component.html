@@ -1,11 +1,17 @@
-<h6>Books</h6>
 
-<button>Add Book</button>
-    
+<div class="row">
+<h6 class="title col-2  text-info">Books</h6>
+<div class="col-8"></div>
+<button class="btn btn-success col-2">Add Book</button>
+</div>
 <br>
-
-<ul>
+<div class="row">
+<div class="col-4 p-3 mb-2 bg-danger text-white tableTit">id</div> <div class="col-4 p-3 mb-2 bg-success text-whitep-3 mb-2 bg-info text-white tableTit"> title</div> <div class="col-4 p-3 mb-2 bg-warning text-white tableTit">action</div>
+</div>
+<ul class="table">
   <li *ngFor="let book of books">
-    id: {{book.id}} , title: {{book.title}} <button>Edit</button> <button>Delete</button>
+    <div class="row underLine">
+    <div class="col-4 cel"> {{book.id}}</div> <div class="col-4 cel"> {{book.title}}</div> <div class="col-4"><button class="btn btn-warning m-2">Edit</button> <button class="btn btn-danger m-2">Delete</button></div>
+  </div>
   </li>
 </ul>
