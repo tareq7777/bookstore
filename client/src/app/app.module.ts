@@ -9,11 +9,13 @@ import { BooksComponent } from './books/books.component';
 import { BookFormComponent } from './book-form/book-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
+import { UsersComponent } from './users/users.component';
 
 const appRoutes: Routes = [
   { path: '', component: BooksComponent },
   { path: 'login', component: LoginComponent },
   { path: 'add', component: BookFormComponent },
+  { path: 'intrest', component: UsersComponent },
   // { path: 'book/:id', component: HeroDetailComponent },
 
   { path: '**', component: PageNotFoundComponent }
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     BooksComponent,
     BookFormComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    UsersComponent,
   ],
   imports: [
     RouterModule.forRoot(
