@@ -1,5 +1,11 @@
 <h6>Books</h6>
-<div *ngFor="let book of books">
-  {{book.id}} <br>
-  {{book.title}}
-</div>
+
+<button>Add Book</button>
+    
+<br>
+
+<ul>
+  <li *ngFor="let book of books">
+    id: {{book.id}} , title: {{book.title}} <button>Edit</button> <button>Delete</button>
+  </li>
+</ul>
