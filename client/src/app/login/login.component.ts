@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,19 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   loginFailed = false
-  username
-  password
+  username = "user1"
+  password = "123"
 
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit() {
   }
 
   submit() {
-    // this.loginFailed = true
-
     console.log("ok")
     console.log(this.username)
     console.log(this.password)
+
+    // this.loginFailed = true
+    this.authService.login(this.username, this.password)
   }
 }

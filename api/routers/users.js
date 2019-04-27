@@ -18,20 +18,28 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    User.getUserByUsername(req.body.username, (err, user) => {
-        if (err) { res.status(500).json({ error: err }); }
-        if (!user) { return res.status(401).json({ message: 'no user' }); }
-        // console.log(user[0].password);
-        // console.log(req.body.password);
-        bcrypt.compare(req.body.password, user[0].password, (err, result) => {
-            if (err) { return res.status(401).json({ message: 'Auth failed1' }); }
-            if (result) {
-                const token = jwt.sign({ username: user.username, userId: user.id }, privateKey, { expiresIn: "1h" });
-                return res.status(200).json({ message: 'Auth successful', access_token: token });
+    if (req.body["username"] && req.body["password"] ) {
+        User.getUserByUsername(req.body.username, (err, user) => {
+            if (err) {
+                return res.status(401).json({ message: err });
             }
-            return res.status(401).json({ message: 'Auth failed2' });
+            if (!user || !Array.isArray(user) || user.length==0) {
+                return res.status(401).json({ message: 'user not found' });
+            }
+            if (!user) { return res.status(401).json({ message: 'no user' }); }
+            console.log(req.body.password);
+            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+                if (err) { return res.status(401).json({ message: 'Auth failed1' }); }
+                if (result) {
+                    const token = jwt.sign({ username: user.username, userId: user.id }, privateKey, { expiresIn: "1h" });
+                    return res.status(200).json({ message: 'Auth successful', access_token: token });
+                }
+                return res.status(401).json({ message: 'Auth failed2' });
+            });
         });
-    });
+    } else {
+        functions.response(res, -10);
+    }
 });
 
 router.post('/signup', (req, res) => {
