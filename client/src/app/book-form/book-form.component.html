@@ -1,41 +1,53 @@
-<button class="btn btn-secondary" routerLink="/" routerLinkActive="active">Back</button>
-
-<br>
-<br>
-<h6>Add a Book</h6>
-
-
+<div class="row">
+  <h6 class="title col-12   text-info">Add a Book</h6>
+  <div class="col-10"></div>
+  <button class="btn btn-secondary col-2 " routerLink="/" routerLinkActive="active">Back</button>
+</div>
 <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-  <label class="form-inline">
-    Title&nbsp;
+  <div class="row">
+    <div class="col-2">
+      <label class="form-inline">
+        Title
+      </label>
+    </div>
     <input required="required" class="form-control input-sm" type="text" formControlName="title" />
-  </label>
 
-  <br>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <label class="form-inline">
+        ISBN
 
-  <label class="form-inline">
-    ISBN&nbsp;
+      </label> </div>
     <input required="required" class="form-control input-sm" type="text" formControlName="isbn" />
-  </label>
-  <br>
 
-  <label class="form-inline">
-    keywords&nbsp;
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <label class="form-inline">
+        keywords
+      </label>
+    </div>
     <input required="required" class="form-control input-sm" type="text" formControlName="keywords" />
-  </label>
-  <br>
 
-  <label class="form-inline">
-    Author&nbsp;
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <label class="form-inline">
+        Author
+      </label>
+    </div>
     <input required="required" class="form-control input-sm" type="text" formControlName="author" />
-  </label>
-  <br>
-  
-  <label class="form-inline">
-    Publisher&nbsp;
-    <input required="required" class="form-control input-sm" type="text" formControlName="publisher" />
-  </label>
 
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <label class="form-inline">
+        Publisher
+      </label>
+    </div>
+    <input required="required" class="form-control input-sm" type="text" formControlName="publisher" />
+  </div>
 
   <hr>
   <div>
