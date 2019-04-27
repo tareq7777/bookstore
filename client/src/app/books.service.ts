@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { url } from '../config';
+import { Observable } from 'rxjs';
 
-class book {
-  
+class Book {
+  id
+  title
+  isbn
+  keywords
+  publisher
+  author
 }
 
 @Injectable({
@@ -11,13 +17,22 @@ class book {
 })
 export class BooksService {
 
-  constructor(private http: HttpClient) { }
+  headers
+
+  constructor(private http: HttpClient) {
+    this.headers = this.getHeaders()
+  }
 
   getBooks() {
-    return this.http.get(url, { headers: this.getHeaders()} )
+    console.log(url + "books");
+
+    return this.http.get<Book[]>(url + "books", { headers: this.headers} )
   }
 
-  getHeaders() {
-
+  getHeaders(): HttpHeaders {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json')
+    return headers
   }
+
+
 }
