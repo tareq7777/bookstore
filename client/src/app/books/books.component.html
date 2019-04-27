@@ -1,11 +1,12 @@
-<h6>Books</h6>
+<button class="btn btn-secondary" routerLink="/add" routerLinkActive="active">Add a Book</button>
 
-<button>Add Book</button>
-    
 <br>
+<br>
+<h6>Books</h6>
+    
 
 <ul>
   <li *ngFor="let book of books">
-    id: {{book.id}} , title: {{book.title}} <button>Edit</button> <button>Delete</button>
+    id: {{book.id}} , title: {{book.title}} <button class="btn btn-info">Edit</button> &nbsp; <button class="btn btn-danger">Delete</button>
   </li>
 </ul>

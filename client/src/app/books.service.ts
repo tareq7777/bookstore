@@ -26,7 +26,7 @@ export class BooksService {
   getBooks() {
     console.log(url + "books");
 
-    return this.http.get<Book[]>(url + "books", { headers: this.headers} )
+    return this.http.get(url + "books", { headers: this.headers} )
   }
 
   getHeaders(): HttpHeaders {
