@@ -1,0 +1,28 @@
+<h6>Login</h6>
+
+<form (ngSubmit)="submit()">
+  <label class="form-inline">
+    Username&nbsp;
+    <input required="required" class="form-control input-sm" type="text" [(ngModel)]="username" name="username" />
+  </label>
+
+  <br>
+
+  <label class="form-inline">
+    Password&nbsp;
+    <input required="required" class="form-control input-sm" type="text" [(ngModel)]="password" name="password" />
+  </label>
+
+  <hr>
+  <div>
+    <input class="btn btn-primary" type="submit" value="Submit">
+  </div>
+
+</form>
+
+<br>
+<br>
+
+<div class="alert alert-danger" *ngIf="loginFailed">
+  Login Failed
+</div>

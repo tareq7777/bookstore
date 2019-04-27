@@ -1,16 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
 import { BookFormComponent } from './book-form/book-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
   { path: '', component: BooksComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'add', component: BookFormComponent },
   // { path: 'book/:id', component: HeroDetailComponent },
 
@@ -22,7 +24,8 @@ const appRoutes: Routes = [
     AppComponent,
     BooksComponent,
     BookFormComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -31,6 +34,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     
   ],
   providers: [],
