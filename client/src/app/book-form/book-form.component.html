@@ -1,0 +1,59 @@
+<button class="btn btn-secondary" routerLink="/" routerLinkActive="active">Back</button>
+
+<br>
+<br>
+<h6>Add a Book</h6>
+
+
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+  <label class="form-inline">
+    Title&nbsp;
+    <input required="required" class="form-control input-sm" type="text" formControlName="title" />
+  </label>
+
+  <br>
+
+  <label class="form-inline">
+    ISBN&nbsp;
+    <input required="required" class="form-control input-sm" type="text" formControlName="isbn" />
+  </label>
+  <br>
+
+  <label class="form-inline">
+    keywords&nbsp;
+    <input required="required" class="form-control input-sm" type="text" formControlName="keywords" />
+  </label>
+  <br>
+
+  <label class="form-inline">
+    Author&nbsp;
+    <input required="required" class="form-control input-sm" type="text" formControlName="author" />
+  </label>
+  <br>
+  
+  <label class="form-inline">
+    Publisher&nbsp;
+    <input required="required" class="form-control input-sm" type="text" formControlName="publisher" />
+  </label>
+
+
+  <hr>
+  <div>
+    <button class="btn btn-primary" type="submit" [disabled]='!bookForm.valid'>Submit</button>
+  </div>
+
+  <br>
+
+  <div class="alert alert-danger" *ngIf="!bookForm.valid">
+    <ul>
+      <li *ngIf="bookForm.get('title').errors?.required">Title is required</li>
+      <li *ngIf="bookForm.get('isbn').errors?.required">ISBN is required</li>
+      <li *ngIf="bookForm.get('keywords').errors?.required">Keywords is required</li>
+      <li *ngIf="bookForm.get('author').errors?.required">Author is required</li>
+      <li *ngIf="bookForm.get('publisher').errors?.required">Publisher is required</li>
+
+    </ul>
+  </div>
+
+
+</form>
