@@ -20,9 +20,11 @@ export class UsersComponent implements OnInit {
     intrest: ['', [Validators.required]],
    
   })
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder ) { }
 
   ngOnInit() {
   }
+  onSubmit() {
 
+  }
 }

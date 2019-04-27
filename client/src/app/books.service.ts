@@ -28,6 +28,11 @@ export class BooksService {
 
     return this.http.get(url + "books", { headers: this.headers} )
   }
+  postBooks(params) {
+    console.log(params);
+
+    return this.http.post(url ,{params}, { headers: this.headers} )
+  }
 
   getHeaders(): HttpHeaders {
     const headers = new HttpHeaders().set('Content-Type', 'application/json')

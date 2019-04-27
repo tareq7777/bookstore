@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, FormArray, AbstractControl, Validators } from '@angular/forms';
+import { BooksService } from '../books.service';
 
 @Component({
   selector: 'app-book-form',
@@ -16,13 +17,18 @@ export class BookFormComponent implements OnInit {
     publisher: ['', [Validators.required]],
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder , private bookservice:BooksService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    console.log(1)
+    // console.log(this.bookForm.value)
+    this.bookservice.postBooks(this.bookForm.value).subscribe(res => {
+      console.log(res)
+    });
+    
+    
   }
 
 
