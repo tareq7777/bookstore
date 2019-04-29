@@ -21,13 +21,13 @@ router.delete('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-
+    
     let title = req.body.title;
     let isbn = parseInt(req.body.isbn);
     let author = req.body.author;
     let keywords = req.body.keywords;
     let publisher = req.body.publisher;
-
+   
     if (title && isbn && author && keywords && publisher) {
         const book = {
             title: title, isbn: isbn, keywords: keywords
