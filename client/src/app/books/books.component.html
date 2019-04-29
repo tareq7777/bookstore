@@ -11,7 +11,7 @@
 <ul class="table">
   <li *ngFor="let book of books">
     <div class="row underLine">
-    <div class="col-4 cel"> {{book.id}}</div> <div class="col-4 cel"> {{book.title}}</div> <div class="col-4"><button class="btn btn-warning m-2">Edit</button> <button class="btn btn-danger m-2">Delete</button></div>
+    <div class="col-4 cel"> {{book.id}}</div> <div class="col-4 cel"> {{book.title}}</div> <div class="col-4"><button class="btn btn-warning m-2">Edit</button> <button (click)="delClick(book.id)"  class="btn btn-danger m-2">Delete</button></div>
   </div>
   </li>
 </ul>

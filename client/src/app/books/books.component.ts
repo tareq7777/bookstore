@@ -20,4 +20,10 @@ export class BooksComponent implements OnInit {
     })
   }
 
+  delClick(id) {
+    console.log(id)
+    this.booksService.delBooks(id).subscribe(res => {
+      console.log(res)
+    });
+}
 }

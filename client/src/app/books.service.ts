@@ -17,7 +17,12 @@ class Book {
 })
 export class BooksService {
 
-  headers
+  headers=new HttpHeaders();
+ 
+  getHeaders():HttpHeaders{
+    const headers=new HttpHeaders().set('Content-Type','application/json');
+    return headers;
+  }
 
   constructor(private http: HttpClient) {
     this.headers = this.getHeaders()
@@ -28,15 +33,20 @@ export class BooksService {
 
     return this.http.get(url + "books", { headers: this.headers} )
   }
+  delBooks(id) {
+    // console.log(url + "books/"+id);
 
+    return this.http.get(url + "books/"+id, { headers: this.headers} )
+  }
+  postBooks(params) {
+    // console.log(params);
+  }
+  
   getAuthors() {
     return this.http.get(url + "books/authors", { headers: this.headers })
   }
 
-  getHeaders(): HttpHeaders {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json')
-    return headers
-  }
+  
 
 
 }

@@ -17,11 +17,25 @@ app.listen(port, _ => {
     console.log('Listing to port ' + port);
 });
 
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+//     next();
+// });
+
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-    next();
-});
+    res.header("Access-Control-Allow-Origin", "*")
+    // res.header("Access-Control-Allow-Headers", "Origin,X-Requested-With,Content-Type,Accept,Authorization");
+    res.header("Access-Control-Allow-Headers", "*")
+
+    if(req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT,POST,PATCH.DELETE.GET')
+        return res.status(200).json({})
+    }
+
+    next()
+})
+
 
 app.use('/api/auth', require('./routers/auth.js'));
 app.use('/api/users', checkAuth, require('./routers/users.js'));
