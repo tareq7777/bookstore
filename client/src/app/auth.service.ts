@@ -14,7 +14,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {
     this.headers = this.getHeaders()
-   }
+  }
 
   getHeaders(): HttpHeaders {
     const headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -22,12 +22,12 @@ export class AuthService {
   }
 
   login(username, password) {
-    this.http.post(url + "users/login", {"username": username, "password": password}, { headers: this.headers }).subscribe((res: any)=>{
+    this.http.post(url + "users/login", { "username": username, "password": password }, { headers: this.headers }).subscribe((res: any) => {
       console.log(res)
-      if(res.access_token) {
+      if (res.access_token) {
         this.isLoggedIn = true
         this.access_token = res.access_token
-        // this.router.navigate(['/']);
+        this.router.navigate(['/']);
       }
 
     })

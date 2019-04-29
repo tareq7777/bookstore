@@ -1,5 +1,5 @@
+import { BooksService } from './../books.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, FormArray, AbstractControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -7,22 +7,14 @@ import { FormGroup, FormControl, FormBuilder, FormArray, AbstractControl, Valida
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  Author = [
-    {name: "adnan", intrest: false},
-    {name: "akram", intrest: false},
-    {name: "tark", intrest: false},
-    {name: "ali", intrest: false},
-    {name: "abod", intrest: false}
-  ]
+  authors = []
 
-
-  intrestForm = this.fb.group({
-    intrest: ['', [Validators.required]],
-   
-  })
-  constructor(private fb: FormBuilder) { }
+  constructor(private booksService: BooksService) { }
 
   ngOnInit() {
+    this.booksService.getAuthors().subscribe((res: any)=>{
+      this.authors = res
+    })
   }
 
 }

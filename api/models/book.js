@@ -19,6 +19,19 @@ Book.getAllBooks = (response) => {
     });
 };
 
+Book.getAllAuthors = (response) => {
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            connection.query("SELECT author FROM books", (err, res) => {
+                err ? functions.response(response, -99) : functions.response(response, 1, res);
+            });
+            connection.release();
+        }
+    });
+};
+
 Book.getBooksById = (bookId, response) => {
     db.pool.getConnection(function (dbErr, connection) {
         if (dbErr) {

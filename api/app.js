@@ -1,9 +1,11 @@
 const express = require('express');
 const functions = require('./functions');
 const db = require('./db');
+const checkAuth = require("./auth/middleware/check-auth");
 
 const app = express();
 const port = 3000;
+
 
 global.express = express;
 global.functions = functions;
@@ -21,8 +23,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api/books', require('./routers/books.js'));
-app.use('/api/users', require('./routers/users.js'));
+app.use('/api/auth', require('./routers/auth.js'));
+app.use('/api/users', checkAuth, require('./routers/users.js'));
+// app.use('/api/books', require('./routers/books.js'));
+
 app.use('/', (req, res) => {
     res.status(404).send('Not found');
 });

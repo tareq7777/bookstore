@@ -5,6 +5,10 @@ router.get('/', (req, res) => {
     Book.getAllBooks(res);
 });
 
+router.get('/authors', (req, res) => {
+    Book.getAllAuthors(res);
+});
+
 router.get('/:id', (req, res) => {
     let bookId = parseInt(req.params.id);
     if (bookId)
@@ -12,6 +16,7 @@ router.get('/:id', (req, res) => {
     else
         functions.response(res, -10);
 });
+
 router.delete('/:id', (req, res) => {
     let bookId = parseInt(req.params.id);
     if (bookId)

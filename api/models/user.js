@@ -21,6 +21,37 @@ User.getAllUser = (response) => {
     });
 };
 
+User.getUsersAuthor = (userId, response) => {
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            connection.query("SELECT notify_author FROM users where id=?", [userId], (err, res) => {
+                if(err) {
+                    functions.response(response, -99)
+                } else {
+                    console.log(res)
+                    functions.response(response, 1, res) 
+                };
+            });
+            connection.release();
+        }
+    });
+};
+
+User.setUsersAuthor = (userId, author, response) => {
+    db.pool.getConnection(function (dbErr, connection) {
+        if (dbErr) {
+            functions.response(response, -99);
+        } else {
+            connection.query("Update users set notify_author=? where id=?", [author, userId], (err, res) => {
+                err ? functions.response(response, -99) : functions.response(response, 1, res);
+            });
+            connection.release();
+        }
+    });
+};
+
 User.getUserById = (id, response) => {
     db.pool.getConnection(function (dbErr, connection) {
         if (dbErr) {
