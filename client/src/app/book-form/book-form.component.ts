@@ -26,6 +26,9 @@ export class BookFormComponent implements OnInit {
     // console.log(this.bookForm.value)
     this.bookservice.postBooks(this.bookForm.value).subscribe(res => {
       console.log(res)
+      if(res['code']==1){
+        window.location = "http://localhost:4200/";
+              }
     });
     
     
