@@ -36,7 +36,7 @@ export class BooksService {
   delBooks(id) {
     // console.log(url + "books/"+id);
 
-    return this.http.get(url + "books/"+id, { headers: this.headers} )
+    return this.http.delete(url + "books/"+id, { headers: this.headers} )
   }
   postBooks(params) {
     // console.log(params);
