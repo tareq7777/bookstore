@@ -23,7 +23,10 @@ export class BooksComponent implements OnInit {
   delClick(id) {
     console.log(id)
     this.booksService.delBooks(id).subscribe(res => {
-      console.log(res)
+      console.log(res['code'])
+      if(res['code']==1){
+window.location.reload();
+      }
     });
 }
 }
