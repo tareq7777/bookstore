@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 
 app.use('/api/auth', require('./routers/auth.js'));
 app.use('/api/users', checkAuth, require('./routers/users.js'));
-// app.use('/api/books', require('./routers/books.js'));
+app.use('/api/books', require('./routers/books.js'));
 
 app.use('/', (req, res) => {
     res.status(404).send('Not found');

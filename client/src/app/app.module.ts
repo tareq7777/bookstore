@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   { path: '', component: BooksComponent },
   { path: 'login', component: LoginComponent },
   { path: 'add', component: BookFormComponent },
-  { path: 'intrest', component: UsersComponent },
+  { path: 'myauthor', component: UsersComponent },
   // { path: 'book/:id', component: HeroDetailComponent },
 
   { path: '**', component: PageNotFoundComponent }

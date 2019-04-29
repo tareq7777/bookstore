@@ -11,9 +11,17 @@ export class AuthService {
 
   isLoggedIn = false
   access_token
+  username
 
   constructor(private http: HttpClient, private router: Router) {
     this.headers = this.getHeaders()
+    
+    var stored_token = localStorage.getItem("bookstore-token")
+    if (stored_token) {
+      this.access_token = stored_token
+      this.username = localStorage.getItem("bookstore-username")
+      this.isLoggedIn = true
+    }
   }
 
   getHeaders(): HttpHeaders {
@@ -22,12 +30,17 @@ export class AuthService {
   }
 
   login(username, password) {
-    this.http.post(url + "users/login", { "username": username, "password": password }, { headers: this.headers }).subscribe((res: any) => {
+    this.http.post(url + "auth/login", { "username": username, "password": password }, { headers: this.headers }).subscribe((res: any) => {
       console.log(res)
       if (res.access_token) {
         this.isLoggedIn = true
         this.access_token = res.access_token
-        this.router.navigate(['/']);
+        this.username = username
+
+        localStorage.setItem("bookstore-token", this.access_token)
+        localStorage.setItem("bookstore-username", this.username)
+
+        this.router.navigate(['/myauthor']);
       }
 
     })
