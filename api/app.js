@@ -14,11 +14,13 @@ const webpush = require("web-push")
 const pbvk = 'BN8y70PiBGqdNusT7de67a7fM9jbp1NlVdIwyZpMhE0kmB87t9la2Tn7gsDBfSWYn8i8nx8ozT54H0lsarMa4IE'
 const prvk = '9giOafG41dxhOuQvWktx9VO68vRvnx2bWlHqiLasewI'
 webpush.setVapidDetails('mailto:idtareq@gmail.com', pbvk, prvk)
-app.post('/subscribe', (req, res) => {
+app.post('/subscribe/:username', (req, res) => {
     const subscription = req.body
-    const payload = JSON.stringify({ title: "Push Test" })
-    console.log(subscription)
-    webpush.sendNotification(subscription, payload).catch(err => console.error(err))
+    // console.log(subscription)
+    // const payload = JSON.stringify({ title: "Push Test" })
+    // webpush.sendNotification(subscription, payload).catch(err => console.error(err))
+    console.log("subscribe: ", req.params.username)
+    
 })
 
 

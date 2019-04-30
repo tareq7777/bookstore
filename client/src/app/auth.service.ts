@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { url } from '../config';
 import { Router } from "@angular/router";
+import { send } from './subscriber';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,9 @@ export class AuthService {
         this.isLoggedIn = true
         this.access_token = res.access_token
         this.username = username
+
+        send(username).catch(err => console.log(err))
+
 
         localStorage.setItem("bookstore-token", this.access_token)
         localStorage.setItem("bookstore-username", this.username)
