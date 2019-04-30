@@ -25,9 +25,10 @@ export class BookFormComponent implements OnInit {
   onSubmit() {
     // console.log(this.bookForm.value)
 
-    // this.bookservice.postBooks(this.bookForm.value).subscribe(res => {
-    //   console.log(res)
-    // });
+    this.bookservice.postBooks(this.bookForm.value).subscribe(res => {
+      //console.log(res)
+      alert ("added")
+    });
     
     
   }
